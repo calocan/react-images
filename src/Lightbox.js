@@ -171,7 +171,7 @@ class Lightbox extends Component {
 				onClick={!!backdropClosesModal && onClose}
 				onTouchEnd={!!backdropClosesModal && onClose}
 			>
-				<div className={css(classes.content)} style={{ marginBottom: offsetThumbnails, maxWidth: width }}>
+				<div className={css(theme.content)} style={{ marginBottom: offsetThumbnails, maxWidth: width }}>
 					<Header
 						customControls={customControls}
 						onClose={onClose}
@@ -212,14 +212,14 @@ class Lightbox extends Component {
 		const heightOffset = `${theme.header.height + theme.footer.height + thumbnailsSize + (theme.container.gutter.vertical)}px`;
 
 		return (
-			<figure className={css(classes.figure)}>
+			<figure className={css(theme.figure)}>
 				{/*
 					Re-implement when react warning "unknown props"
 					https://fb.me/react-unknown-prop is resolved
 					<Swipeable onSwipedLeft={this.gotoNext} onSwipedRight={this.gotoPrev} />
 				*/}
 				<img
-					className={css(classes.image)}
+					className={css(theme.image)}
 					onClick={!!onClickImage && onClickImage}
 					sizes={sizes}
 					src={image.src}
@@ -305,24 +305,5 @@ Lightbox.defaultProps = {
 Lightbox.childContextTypes = {
 	theme: PropTypes.object.isRequired,
 };
-
-const classes = StyleSheet.create({
-	content: {
-		position: 'relative',
-	},
-	figure: {
-		margin: 0, // remove browser default
-	},
-	image: {
-		display: 'block', // removes browser default gutter
-		height: 'auto',
-		margin: '0 auto', // maintain center on very short screens OR very narrow image
-		maxWidth: '100%',
-
-		// disable user select
-		WebkitTouchCallout: 'none',
-		userSelect: 'none',
-	},
-});
 
 export default Lightbox;
